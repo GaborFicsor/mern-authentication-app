@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 // server.js
 const express = require('express');
 const mongoose = require('mongoose');
@@ -16,7 +18,7 @@ mongoose.connect('mongodb://localhost:27017', { useNewUrlParser: true, useUnifie
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
-app.use(session({ secret: 'your-secret-key', resave: true, saveUninitialized: true }));
+app.use(session({ secret: process.env.SESSION_SECRET, resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 
